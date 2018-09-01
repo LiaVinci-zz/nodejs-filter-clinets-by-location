@@ -1,6 +1,6 @@
 # :tada:   NodeJS Intercom Job Assignment By LiaVinci   :tada:
 
-## Running & Testing
+## :boom: Running & Testing :boom:
 
 ### First please make sure to install the app dependencies, to do so please follow the next steps:
 
@@ -17,7 +17,11 @@
 
 * `npm run test`
 
-## :pencil2:   A bit about the project composition   :straight_ruler:
+### App in action
+
+![](app.gif)
+
+## :pencil2:   A bit about the project architecture   :straight_ruler:
 
 **app.js -** the app starting point.
 
@@ -32,3 +36,5 @@
 **The mocks folder -** contains different mock objects that help us test the application and doesn't not have a space in the module folders, for example different file variations, I don't want to pollute the data/file folder with unrelated files that might confuse fresh eyes.
 
 **config.js -** contains different default values used in our app.
+
+**formInitializer.js -** contains interactive form to be filled by our user to make the app a bit more interesting.
