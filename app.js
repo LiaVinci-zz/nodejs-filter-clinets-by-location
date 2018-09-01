@@ -1,15 +1,44 @@
+// External Requires
+const chalk = require('chalk')
+const clear = require('clear')
+const figlet = require('figlet')
+
 // App Requires
-const config = require('./config')
+const formInitializer = require('./formInitializer')
 const customers = require('./logic/customers')
 
-customers.getAll(config.customersFilePath)
-  .then((data) => {
-    const longitude = config.offices.dublin.longitude
-    const latitude = config.offices.dublin.latitude
-    let customersWithinDistanceSortedById = customers.sortById(customers.filterByDistanceFrom(data, longitude, latitude, 100))
+clear()
 
-    console.log('Those are the near by customers that you should invite for a dinner: ')
+console.log(
+  chalk.cyan(
+    figlet.textSync('Intercom', { horizontalLayout: 'full' })
+  )
+)
 
-    customersWithinDistanceSortedById.forEach((customer) => console.log(`id. ${customer.user_id} name. ${customer.name}`))
-  })
-  .catch((error) => console.error(error))
+initializeApp = async () => {
+  let filterCustomerSettings = await formInitializer()
+
+  clear()
+
+  console.log(
+    chalk.cyan(
+      figlet.textSync('Filtered Customers', { horizontalLayout: 'full' })
+    )
+  )
+
+  customers.getAll(filterCustomerSettings.filePath)
+    .then((data) => {
+      const longitude = filterCustomerSettings.longitude
+      const latitude = filterCustomerSettings.latitude
+      const distance = filterCustomerSettings.distance
+
+      let customersWithinDistanceSortedById = customers.sortById(customers.filterByDistanceFrom(data, longitude, latitude, distance))
+
+      console.log(chalk.yellow('Those are the near by customers that you should invite for a dinner: \n'))
+
+      customersWithinDistanceSortedById.forEach((customer) => console.log(`id. ${customer.user_id} name. ${customer.name}`))
+    })
+    .catch((error) => console.error(error))
+}
+
+initializeApp()
