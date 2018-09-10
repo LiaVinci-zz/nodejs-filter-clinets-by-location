@@ -1,4 +1,4 @@
-# :tada:   NodeJS Intercom Job Assignment By LiaVinci   :tada:
+# :tada:   NodeJS Filter Clients By Location | LiaVinci   :tada:
 
 ## :boom: Running & Testing :boom:
 
